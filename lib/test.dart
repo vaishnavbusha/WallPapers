@@ -72,6 +72,7 @@ class TestPage extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     String url = snapshot.data!.docs[index]['imgurl'];
+                    String imglink = snapshot.data!.docs[index]['imglink'];
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 5),
@@ -82,6 +83,7 @@ class TestPage extends StatelessWidget {
                               index: index,
                               imageurl: url,
                               docid: snapshot.data!.docs[index].id,
+                              imglink: imglink,
                             ),
                           ),
                         ),

@@ -10,26 +10,28 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wallpaper_manager/wallpaper_manager.dart';
 
 class WallPaperPage extends StatelessWidget {
   final String imageurl;
   final int index;
   final String docid;
+  final String imglink;
   WallPaperPage(
-      {required this.index, required this.imageurl, required this.docid});
+      {required this.index,
+      required this.imageurl,
+      required this.docid,
+      required this.imglink});
 
   @override
   Widget build(BuildContext context) {
     var scaler = MediaQuery.of(context).size;
-    //var textscaler = MediaQuery.of(context).textScaleFactor;
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black54,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //alignment: AlignmentDirectional.center,
           children: [
             Container(
               height: scaler.height * 0.8,
@@ -79,17 +81,7 @@ class WallPaperPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                   top: scaler.height * 0.015, bottom: scaler.height * 0.015),
-              child:
-                  // Text(
-                  //   'What would you like to do ?',
-                  //   style: TextStyle(
-                  //       fontFamily: 'SFPro',
-                  //       color: Colors.white.withOpacity(0.9),
-                  //       fontSize: textscaler * 35,
-                  //       fontStyle: FontStyle.normal),
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  Container(
+              child: Container(
                 //color: Colors.amber,
                 height: scaler.height * 0.035,
                 child: FittedBox(
@@ -114,17 +106,7 @@ class WallPaperPage extends StatelessWidget {
                     screenplaceholder: 1,
                     setas: 'Set for home screen');
               },
-              title:
-                  // Text(
-                  //   'Set for home screen',
-                  //   style: TextStyle(
-                  //       fontFamily: 'SFPro',
-                  //       color: Color(0xff66B933),
-                  //       fontSize: textscaler * 26,
-                  //       fontStyle: FontStyle.normal),
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  Container(
+              title: Container(
                 height: scaler.height * 0.025,
                 child: FittedBox(
                   child: Text(
@@ -152,17 +134,7 @@ class WallPaperPage extends StatelessWidget {
                     screenplaceholder: 2,
                     setas: 'Set for lock screen');
               },
-              title:
-                  // Text(
-                  //   'Set for lock screen',
-                  //   style: TextStyle(
-                  //       fontFamily: 'SFPro',
-                  //       color: Color(0xff66B933),
-                  //       fontSize: textscaler * 26,
-                  //       fontStyle: FontStyle.normal),
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  Container(
+              title: Container(
                 height: scaler.height * 0.025,
                 child: FittedBox(
                   child: Text(
@@ -191,17 +163,7 @@ class WallPaperPage extends StatelessWidget {
                     screenplaceholder: 3,
                     setas: 'Set for both screens');
               },
-              title:
-                  //  Text(
-                  //   'Set for both screens',
-                  //   style: TextStyle(
-                  //       fontFamily: 'SFPro',
-                  //       color: Color(0xff66B933),
-                  //       fontSize: textscaler * 26,
-                  //       fontStyle: FontStyle.normal),
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  Container(
+              title: Container(
                 height: scaler.height * 0.025,
                 child: FittedBox(
                   child: Text(
@@ -235,17 +197,7 @@ class WallPaperPage extends StatelessWidget {
                   if (isdone) {
                     final snackbar = SnackBar(
                       behavior: SnackBarBehavior.floating,
-                      content:
-                          // Text(
-                          //   'Download Completed.',
-                          //   style: TextStyle(
-                          //     color: Colors.white,
-                          //     fontFamily: 'SFPro',
-                          //     fontSize: textscaler * 17,
-                          //   ),
-                          //   textAlign: TextAlign.center,
-                          // ),
-                          FittedBox(
+                      content: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Download Completed.',
@@ -269,17 +221,7 @@ class WallPaperPage extends StatelessWidget {
                 } catch (e) {
                   final snackbar = SnackBar(
                     behavior: SnackBarBehavior.floating,
-                    content:
-                        // Text(
-                        //   'Error downloading, please check your Internet connectivity.',
-                        //   style: TextStyle(
-                        //     color: Colors.white,
-                        //     fontFamily: 'SFPro',
-                        //     fontSize: textscaler * 17,
-                        //   ),
-                        //   textAlign: TextAlign.center,
-                        // ),
-                        FittedBox(
+                    content: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
                         'Error downloading, please check your Internet connectivity.',
@@ -309,21 +251,37 @@ class WallPaperPage extends StatelessWidget {
                 // print('ok');
                 Navigator.pop(context);
               },
-              title:
-                  // Text(
-                  //   'Download',
-                  //   style: TextStyle(
-                  //       fontFamily: 'SFPro',
-                  //       color: Color(0xff66B933),
-                  //       fontSize: textscaler * 26,
-                  //       fontStyle: FontStyle.normal),
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  Container(
+              title: Container(
                 height: scaler.height * 0.025,
                 child: FittedBox(
                   child: Text(
                     'Download',
+                    style: TextStyle(
+                        fontFamily: 'SFPro',
+                        color: Color(0xff66B933),
+                        //fontSize: 20,
+                        fontStyle: FontStyle.normal),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              horizontalTitleGap: 1,
+            ),
+            Divider(
+              height: 1,
+              color: Colors.white24,
+            ),
+            ListTile(
+              onTap: () async {
+                if (await canLaunch(imglink)) {
+                  await launch(imglink);
+                }
+              },
+              title: Container(
+                height: scaler.height * 0.025,
+                child: FittedBox(
+                  child: Text(
+                    'Visit image source',
                     style: TextStyle(
                         fontFamily: 'SFPro',
                         color: Color(0xff66B933),
