@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "58762668290",
+    "project_id": "wallpapers-3aa9a",
+    "storage_bucket": "wallpapers-3aa9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58762668290:android:b3b83435ac5a30fbdcfa1b",
+        "android_client_info": {
+          "package_name": "com.aquelastudios.wallpapers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58762668290-d613bk3fc06qpi67440l1c6n558dtp9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfFnKZh57BujbAYm5zLRxcTRgcYZZ22eU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58762668290-d613bk3fc06qpi67440l1c6n558dtp9o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
